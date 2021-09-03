@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript Funciones</title>
+
+</head>
+
+<body>
+    <script src="./function.js"></script>
+    <script>
+        let resultado = sumaNumeros(80, 40);
+        //alert(resultado);
+        cadena = "Andrea";
+        caracterBuscado = "u";
+        let encontrado = buscaCaracter(cadena, caracterBuscado);
+        alert(`El caracter${carcaterBuscado} ${encontrado ? "si" : "no"} existe en la cadena ${cadena}`);
+    
+    
+    // funcion anonima 
+    const elevaAlCuadradoFuncion = function (numero, potencia) {
+        return Math.pow(numero, potencia);
+    }
+
+    alert (elevaAlCuadradoFuncion(2,4));
+
+    //Arrow Function
+    const multiplicacion =(x,y) => x*y;
+    alert(multiplicacion(50,20));
+
+    const potenciaNumero = (numero, potencia) =>{
+    return Math.pow(numero, potencia);
+    }
+    alert (potenciaNumero(2,5));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>DOM</title>
+
+</head>
+
+<body>
+    <div id ="grupoBotones">
+    <button Id="btn1">Boton 1</button>
+    <button Id="btn2">Boton 2 </button>
+    <button Id="btn3">Boton 3</button>
+    </div>
+
+    <script>
+        console.log(document.children);
+
+        botones = document.getElementsByTagName('button');
+        console.log(botones);
+
+        let grupoBotones = document.getElementById("grupoBotones");
+        let nuevoBoton = document.createElement('button');
+        nuevoBoton.innerText = "Boton 4";
+       grupoBotones.appendChild(nuevoBoton)
+0
+        for (boton of  botones){
+            boton.style.color="blue";
+            
+        } 
+
+        boton1 = document.getElementsById(`btn1`);
+        boton1.addEventListener(`click`, function() {
+        alert(`Click boton 1`);  
+        
+        })
+    
+    </script>
+</body>
+
+
+</html>

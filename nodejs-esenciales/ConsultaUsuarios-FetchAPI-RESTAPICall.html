@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>AJAX-RestAPI</title>
+
+</head>
+
+<body>
+
+   Clave del Usuario: <input type="text" id="txtClaveUsuario">
+    <input id="btnBuscar" type="button" value = "Buscar usuario" onclick="consultaUsuario()">
+    Nombre: <input type = "text" id="txtNombre" readonly/>
+    Email: <input type = "text" id="txtEmail" readonly/>
+
+   <script>
+
+       function consultaUsuario() {
+           let claveBuscada = document.getElementById("txtClaveUsuario").value;
+           let txtNombre = document.getElementById("txtNombre");
+           let txtEmail = document.getElementById("txtEmail");
+           fetch(`http://jsonplaceholder.typicode.com/users/${claveBuscada}`)
+           .then(response => response.json())
+           .then(user=>{
+               txtNombre.value = user.name;
+               txtEmail.value = user.email;
+           });
+
+           
+       }
+
+   </script>
+
+</body>
+
+</html>

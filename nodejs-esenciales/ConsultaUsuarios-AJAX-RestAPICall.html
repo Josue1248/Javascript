@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>AJAX-RestAPI</title>
+
+</head>
+
+<body>
+
+    Clave del Usuario: <input type="text" id="textClaveUsuario">
+    <input id="btnBuscar" type="button" value="Busca usuario">
+
+    Nombre: <input type="text" id="txtNombre" readonly>
+    Email: <input type="text" id="txtEmail" readonly>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="./AJAX-RestAPI.Calls.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#btnBuscar").click(function () {
+                let claveBuscada = $("#textClaveUsuario").val();
+                $.ajax({
+                    url: `https://jsonplaceholder.typicode.com/users/${claveBuscada}`,
+                    contentType: "application/json",
+                    dataType: 'json',
+                    type: 'get',
+                    success: function (result) {
+                        $("#txtNombre").val(result.name);
+                        $("#txtEmail").val(result.email);
+
+                    },
+                    error: function (result) {
+                        console.log('La llamada no se pudo completar');
+                        console.log.apply(result);
+                    }
+            });
+        });
+});
+
+    </script>
+</body>
+
+</html>

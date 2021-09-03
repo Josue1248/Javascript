@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>XHR RestApi</title>-RestAPI</title>
+
+</head>
+
+<body>
+
+    Clave del Usuario: <input type="text" id="textClaveUsuario">
+    <input id="btnBuscar" type="button" value="Busca usuario " onclick="consultaUsuario()">
+    Nombre: <input type="text" id="txtNombre" readonly>
+    Email: <input type="text" id="txtEmail" readonly>
+
+    <script>
+
+
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+
+            // Process our return data
+            if (xhr.status >= 200 && xhr.status < 300) {
+                let respuesta = JSON.parse(xhr.responseText);
+                let txtNombre = document.getElementById("txtNombre");
+                let txtEmail = document.getElementById("txtEmail");
+                txtNombre.value = respuesta.name;
+                txtEmail.value = respuesta.email;
+            } else {
+                // What do when the request fails
+                console.log('The request failed!');
+            }
+
+        };
+
+        function consultaUsuario() {
+            let claveBuscada = document.getElementById("textClaveUsuario").value;
+            xhr.open('GET', `https://jsonplaceholder.typicode.com/users/${claveBuscada}`);
+            xhr.send();
+        }
+
+
+
+    </script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="./AJAX-RestAPI.Calls.js"></script>
+
+
+
+    </script>
+</body>
+
+</html>

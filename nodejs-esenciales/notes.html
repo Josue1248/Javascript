@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Notes</title>
+
+</head>
+
+<body>
+    Title: <input type="text" id="noteTitle">
+    Contenido: <input type="text" id="noteContent">
+    <input type="button" value="Guardar Nota" onclick="guardarNota()">
+    <ol id="notas"></ol>
+
+    <script>
+
+        let listaNotas = document.getElementById("notas");
+        while (listaNotas.firstChild)
+            listaNotas.removeChild(listaNotas.firstChild);
+
+        function despliegaLasNotas(){
+            fetch('http://localhost:3000/notes/')
+            .then(response => response.json())
+            .then(notas => {
+                notas.forEach((nota) => {
+                    let nuevaNota = document.createElement("li");
+                    nuevaNota.innerHTML = `Titulo: ${nota.title} Contenido:  ${nota.content}`;
+                    listaNotas.appendChild(nuevoProducto);
+                });
+
+            });
+
+        }
+       
+        function guardarNota() {
+
+            let textTitulo = document.getElementById("noteTitle");
+            let textContenido = document.getElementById("noteContent");
+
+            fetch('http://localhost:3000/notes/', {
+                method: 'POST',
+                body: JSON.stringify({
+                    TITLE: textTitulo.value,
+                    completed: textContenido.value
+                }),
+
+                headers: {
+                    "Context-type": "application/json"
+                }
+            })
+                .then(response => response.json())
+                .then(json => console.log(json))
+            despliegaLasNotas();
+
+        }
+
+    </script>
+
+</body>
+
+</html>
